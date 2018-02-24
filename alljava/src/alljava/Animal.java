@@ -7,7 +7,8 @@ package alljava;
 import java.util.Scanner;
 import java.util.*; //entire library
 public class Animal {
-
+ // just test of git from other device 
+ 
 	//public -visible to anyone else
 	//static -only one instance of this variable exist/
 	//final classes cant be subclassed
