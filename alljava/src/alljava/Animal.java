@@ -25,7 +25,7 @@ public class Animal {
 	
 	protected static int numberOfAnimals=0;//every object shares same value of aminals
 	
-	public Scanner userInput = new Scanner(System.in);//allow get user input from keyboard
+	static Scanner userInput = new Scanner(System.in);//allow get user input from keyboard
 	
 	
 	
@@ -177,7 +177,7 @@ public class Animal {
 
 
 	public void setFavoriteChar() {
-		//тут кусок непонятнойфигни, откуда этот чел взял ту таблицу и что такое первые 20 символов в его таблице а не в юникоде 
+	
 		int randomIntChar = (int)(Math.random()*94 +32); //0- 126-32 =94
 		this.favoriteChar=(char)randomIntChar;
 		if(randomIntChar==32) {
@@ -195,6 +195,30 @@ public class Animal {
 		if(((randomIntChar>97) && (randomIntChar<122)) || ((randomIntChar>65) && (randomIntChar<90))) {
 			System.out.println("Favorite character is a letter");
 		}
+		//comparsion in short way
+		// (true/false)? result if true: result if false ;
+		int wichIsBigger = (50>randomIntChar)? 50 : randomIntChar;
+		//i print it to console to know what numbers i get
+		//System.out.println("randomIntChar is " + randomIntChar + " and Wich is Bigger is " + wichIsBigger );
+		
+		//case 8( <- int byte or character or srings '8   '<-char ; "stringvarialbe    "<-string
+		randomIntChar=42;
+		char randCharChar = (char)randomIntChar;
+		switch(randomIntChar) {
+		case 42: 
+			System.out.println("Favorite character set to asterisk : " + randCharChar);
+			break;
+		case 0x041:
+		case 0b011:
+		case 41:
+		case 041:
+			//do nothing
+			break;
+		default:
+			System.out.println("Favorite character set to something");
+			break;
+		}
+		
 	}
 
 
@@ -224,20 +248,117 @@ public class Animal {
 
 
 
-
 	public void setHeight(float height) {
 		this.height = height;
 	}
 
 
-
-
-
-	public static void main(String[] args) {
+/**
+ * 22:38
+ * cycles
+ * */
+	// protected meant that this function is visible only for pacage
+	//static means that this thing belongs to the class and not to the individual objects
+	protected static void countTo(int startingNumber) {
+		
+		for(int i=startingNumber; i<= 100 ;i++) {
+			//continue -jump to start of the loop for condition test
+			if (i==90) continue;
+			
+		}
+		
+	}
+//24:30
+	protected static String whileExample(int startingNumber) {
+		
+		int i=1;
+		
+		while(i < startingNumber ) {
+			
+			System.out.println(i);
+			i++;
+			
+			if(i== startingNumber) {	break;} ;
+		}
+		
+		return "this while example return String, not void";
+	}
 	
-	Animal theAnimal= new Animal();
+//25:36
+	
+	protected static void doWhileExample() {
+		// guess my number in video
+		
+		int number=1;
+		
+		do {
+			//at least 1 time something doing here
+			System.out.println("Guesss my number (1 -10 )");
+			while(!userInput.hasNextInt()) {
+				String notIntEntered=userInput.next();
+				System.out.printf("%s is not a number\n", notIntEntered); //%s - string
+				
+			}
+			
+			number=userInput.nextInt();
+			
+		} while( number!=10) ;
+		System.out.println("you got my num");
+		
+		
+		
+	}// eof doWhile example
+	
+	public String makeSound() {
+		
+		return "Grrrr"; 
+		//String animalSound = "Rrrrr";
+		//return animalSound;
+		
+	}
+
+	public static void speakAnimal(Animal gettedAnimal) {
+		
+		System.out.println("Animal says" + gettedAnimal.makeSound() );
 		
 	}
 	
+	public static void main(String[] args) {
+	
+	Animal theAnimal= new Animal();
+	//theAnimal.doWhileExample();
+		
+/*	Here will be some samples of random arrays and arrays creations
+ * 
+ * */
+	
+	int[] fariteNumber;
+	fariteNumber= new int[20];
+	// ^ same as : int[] fariteNumber = new int[20];
+	
+	String[] stringArray = {"some","random","words"} ;
+	//: -for each
+	for (String word : stringArray) {
+		
+		System.out.println(word);
+	
 	
 	}
+	/*arrays first ->[]  from [this one][][] is how many down
+	 * arrays second ->[]  from [][this one][] is how many across
+	 * and third - is "z" dimension, how many of this 2 d arrays was created
+	 * 
+	 * */
+	String[][][] threeDiArray = {};
+
+	String[] cloneOfArray = Arrays.copyOf(stringArray,5);
+
+	System.out.println(Arrays.toString(cloneOfArray));
+
+	System.out.println(Arrays.binarySearch(cloneOfArray, "null"));
+
+	
+	}
+	
+	
+}
